@@ -1,7 +1,9 @@
 import axios from 'axios';
-require('dotenv').config();
+import dotenv from 'dotenv';
 
-const api_key = process.env.API_KEY;
+dotenv.config();
+
+const api_key = "AIzaSyDVDm7cbCuwxV5NOFLDXgRy1z-guqPzHTM";
 
 // Converts lat and long to city, state, country for easy recording in DB
 const reverseGeocoding = async (latitude, longitude) => {

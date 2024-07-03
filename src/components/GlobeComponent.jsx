@@ -59,19 +59,19 @@ const GlobeComponent = (reloadTrigger) => {
     return (  
 
         <Globe
-            ref={globeEl}
-            pointsData={data}
-            initialCoordinates={[34.0549076, -118.242643]}
-            pointAltitude={0}
-            height='500'
-            width='500'
-            animateIn={true}
-            pointRadius={d => scale(d.count)}
-            pointColor={() => 'orange'}
-            pointLabel={({ city, state, count }) => `${city}, ${state}: ${count}`}
-            globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
-            backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
-        />
+        ref={globeEl}
+        pointsData={data}
+        initialCoordinates={[34.0549076, -118.242643]}
+        pointAltitude={0}
+        height='500'
+        width='500'
+        animateIn={true}
+        pointRadius={d => scale(d.count)}
+        pointColor={() => 'orange'}
+        pointLabel={({ city, state, count }) => `${city}, ${state}: ${count}`}
+        globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+        backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+    />
     );
 };
 

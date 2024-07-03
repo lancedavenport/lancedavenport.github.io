@@ -4,7 +4,6 @@ import cors from 'cors';
 import pkg from 'body-parser';
 import reverseGeocoding from './ReverseGeocoding.js';
 
-require('dotenv').config();
 
 const { json } = pkg;
 
@@ -13,10 +12,10 @@ const port = 5174;
 
 const createTcpPool = async config => {
   return createPool({
-    user: process.env.DB_USER, 
-    password: process.env.DB_PASSWORD, 
-    database: process.env.DB_NAME, 
-    host: process.env.DB_HOST,
+    user: "root2", 
+    password: "Lanced532!!!", 
+    database: "storeCity", 
+    host: "107.180.118.83",
     port: 3306,
     connectTimeout: 10000,
     acquireTimeout: 10000,

@@ -2,8 +2,6 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import GlobeComponent from "../../GlobeComponent";
 
-
-
 export default function MyLanding() {
     const [reloadTrigger, setReloadTrigger] = useState(0);
     // This function will get the location of the user and be used in the SQL db

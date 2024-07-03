@@ -1,7 +1,9 @@
 import axios from 'axios';
-require('dotenv').config();
+import dotenv from 'dotenv';
 
-const api_key = process.env.API_KEY;
+
+
+const api_key = "AIzaSyDVDm7cbCuwxV5NOFLDXgRy1z-guqPzHTM";
 
 const forwardGeocode = async (address) => {
     const addressString = `${address.city}, ${address.state}, ${address.country}`;
