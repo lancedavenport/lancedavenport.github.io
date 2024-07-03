@@ -65,8 +65,8 @@ const GlobeComponent = (reloadTrigger) => {
         pointAltitude={0}
         height= {500}
         width={500}
-        animateIn={true}
         pointRadius={d => scale(d.count)}
+        cameraRotateSpeed={1}
         pointColor={() => 'orange'}
         pointLabel={({ city, state, count }) => `${city}, ${state}: ${count}`}
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
