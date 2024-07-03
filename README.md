@@ -1,1 +1,0 @@
-# lancedavenport.github.io
