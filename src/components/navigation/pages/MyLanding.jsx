@@ -22,7 +22,7 @@ export default function MyLanding() {
     }
 
     const sendLocationToDB = (lat, long) => {
-        fetch( 'http://localhost:5174/api/location', {
+        fetch( 'https://my-website-4o21khpi0-lancedavenports-projects.vercel.app/api/location', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
