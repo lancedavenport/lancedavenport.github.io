@@ -63,8 +63,8 @@ const GlobeComponent = (reloadTrigger) => {
         pointsData={data}
         initialCoordinates={[34.0549076, -118.242643]}
         pointAltitude={0}
-        height='500'
-        width='500'
+        height= {500}
+        width={500}
         animateIn={true}
         pointRadius={d => scale(d.count)}
         pointColor={() => 'orange'}

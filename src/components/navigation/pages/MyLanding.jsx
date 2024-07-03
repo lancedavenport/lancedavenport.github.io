@@ -52,7 +52,7 @@ export default function MyLanding() {
                         <h1>Welcome to My Personal Website!</h1>
                         <p>Here you can find more information about me, some of my projects, and an easy way to contact me.</p>
                         <p>With your permission, I have built a tool where I (and you) can see the locations of the page viewers.</p>
-                        <Button onClick={getLocationAndSend} style={{}}>Allow location tracking</Button>
+                        <Button onClick={getLocationAndSend}>Allow location tracking</Button>
                     </Col>
                     <Col xs={12} lg={6}>
                         <div className="globe-container">

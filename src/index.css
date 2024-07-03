@@ -1,0 +1,18 @@
+button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 100;
+    font-family: inherit;
+    color: white;
+    background-color: #1800cf;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+
+.nav-link {
+    background-color: black;
+    color: white;
+    padding-left: 10px;
+}
