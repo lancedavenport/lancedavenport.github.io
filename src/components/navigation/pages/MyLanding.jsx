@@ -22,7 +22,7 @@ export default function MyLanding() {
     }
 
     const sendLocationToDB = (lat, long) => {
-        fetch( 'https://my-website-4o21khpi0-lancedavenports-projects.vercel.app/api/location', {
+        fetch('https://my-website-lancedavenport-lancedavenports-projects.vercel.app/api/location', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,12 +33,11 @@ export default function MyLanding() {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.json(); // Parse the JSON from the response
+            return response.json(); 
         }).then(data => {
             setReloadTrigger(prev => prev + 1)
         })
         .catch(error => {
-            // Handle errors here
             console.error('Error:', error);
         });
     }

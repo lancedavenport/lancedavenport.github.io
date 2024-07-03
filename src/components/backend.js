@@ -2,28 +2,35 @@ import { createPool } from 'promise-mysql';
 import express from 'express';
 import cors from 'cors';
 import pkg from 'body-parser';
-import reverseGeocoding from './ReverseGeocoding.js';
-
+import reverseGeocoding from '../ReverseGeocoding.js';
 
 const { json } = pkg;
-
 const app = express();
 const port = 5174;
 
-const createTcpPool = async config => {
-  return createPool({
-    user: "root2", 
-    password: "Lanced532!!!", 
-    database: "storeCity", 
-    host: "107.180.118.83",
-    port: 3306,
-    connectTimeout: 10000,
-    acquireTimeout: 10000,
-    ...config,
-  });
+const createTcpPool = async (config) => {
+    return createPool({
+        user: "root2",
+        password: "Lanced532!!!",
+        database: "storeCity",
+        host: "107.180.118.83",
+        port: 3306,
+        connectTimeout: 31536000,
+        acquireTimeout: 31536000,
+        ...config,
+    });
 };
-
-app.use(cors());
+const corsOptions = {
+    origin: '*', 
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type'],
+    preflightContinue: false,
+    credentials: true,
+    optionsSuccessStatus: 204 
+};
+  
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(json());
 
 app.post('/api/location', async (req, res) => {
@@ -40,7 +47,6 @@ app.post('/api/location', async (req, res) => {
         res.status(500).json({ success: false, message: 'Error adding location' });
     }
 });
-
 app.get('/api/location', async (req, res) => {
     try {
         const locations = await getLocations();
@@ -50,7 +56,6 @@ app.get('/api/location', async (req, res) => {
         res.status(500).json({ success: false, message: 'Error fetching locations' });
     }
 });
-
 const getLocations = async () => {
     const pool = await createTcpPool();
     try {
@@ -61,10 +66,9 @@ const getLocations = async () => {
         console.error('Error executing query:', error);
         throw error;
     } finally {
-        pool.end(); // Release the connection back to the pool
+        pool.end();
     }
 };
-
 const addLocation = async (city, state, country) => {
     const pool = await createTcpPool();
     try {
@@ -75,7 +79,7 @@ const addLocation = async (city, state, country) => {
         console.error('Error executing query:', error);
         throw error;
     } finally {
-        pool.end(); // Release the connection back to the pool
+        pool.end(); 
     }
 };
 

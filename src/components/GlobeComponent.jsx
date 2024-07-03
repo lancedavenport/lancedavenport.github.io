@@ -5,7 +5,7 @@ import forwardGeocode from './ForwardGeocode';
 
 
 const getLocationData = async () => {   
-    return await fetch('http://localhost:5174/api/location', {
+    return await fetch('https://my-website-lancedavenport-lancedavenports-projects.vercel.app/api/location', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
