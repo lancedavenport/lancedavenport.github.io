@@ -3,31 +3,35 @@ import express from 'express';
 import cors from 'cors';
 import pkg from 'body-parser';
 import reverseGeocoding from '../ReverseGeocoding.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const { json } = pkg;
 const app = express();
 const port = 5174;
+const api_key = process.env.API_KEY;
 
 const createTcpPool = async (config) => {
     return createPool({
-        user: "root2",
-        password: "Lanced532!!!",
-        database: "storeCity",
-        host: "107.180.118.83",
-        port: 3306,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
         connectTimeout: 31536000,
         acquireTimeout: 31536000,
         ...config,
     });
 };
 const corsOptions = {
-    origin: '*', 
+    origin: '*', // Replace with your frontend origin
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type'],
     preflightContinue: false,
     credentials: true,
-    optionsSuccessStatus: 204 
-};
+    optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
+  };
   
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
@@ -47,6 +51,7 @@ app.post('/api/location', async (req, res) => {
         res.status(500).json({ success: false, message: 'Error adding location' });
     }
 });
+
 app.get('/api/location', async (req, res) => {
     try {
         const locations = await getLocations();
@@ -56,6 +61,21 @@ app.get('/api/location', async (req, res) => {
         res.status(500).json({ success: false, message: 'Error fetching locations' });
     }
 });
+
+app.post('/api/location/forward', async (req, res) => {
+    const { city, state, country } = req.body;
+    if (!city || !state || !country) {
+        return res.status(400).json({ success: false, message: 'City, state, and country are required' });
+    }
+
+    try {
+        const location = await forwardGeocode({ city, state, country });
+        res.json({ success: true, location });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error fetching location' });
+    }
+});
+
 const getLocations = async () => {
     const pool = await createTcpPool();
     try {
@@ -66,7 +86,7 @@ const getLocations = async () => {
         console.error('Error executing query:', error);
         throw error;
     } finally {
-        pool.end();
+        pool.end(); // Release the connection back to the pool
     }
 };
 const addLocation = async (city, state, country) => {
@@ -79,7 +99,30 @@ const addLocation = async (city, state, country) => {
         console.error('Error executing query:', error);
         throw error;
     } finally {
-        pool.end(); 
+        pool.end(); // Release the connection back to the pool
+    }
+};
+
+const forwardGeocode = async (address) => {
+    const addressString = `${address.city}, ${address.state}, ${address.country}`;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(addressString)}&key=${api_key}`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Failed to fetch');
+        }
+        
+        const data = await response.json();
+        const results = data.results[0].geometry.location;
+        console.log(results)
+        return {
+            latitude: results.lat,
+            longitude: results.lng
+        };
+    } catch (error) {
+        console.error('Error fetching location:', error);
+        throw error;
     }
 };
 

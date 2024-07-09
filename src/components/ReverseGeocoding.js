@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const api_key = "AIzaSyDVDm7cbCuwxV5NOFLDXgRy1z-guqPzHTM";
+const api_key = process.env.API_KEY;
 
 // Converts lat and long to city, state, country for easy recording in DB
 const reverseGeocoding = async (latitude, longitude) => {
@@ -34,5 +34,6 @@ const reverseGeocoding = async (latitude, longitude) => {
         throw error;
     }
 }
+
 
 export default reverseGeocoding;

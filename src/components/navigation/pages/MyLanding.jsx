@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import GlobeComponent from "../../GlobeComponent";
 
 export default function MyLanding() {
-    const [reloadTrigger, setReloadTrigger] = useState(0);
+    const [reloadTrigger, setReloadTrigger] = useState(false);
     // This function will get the location of the user and be used in the SQL db
 
     const getLocationAndSend = () => {
@@ -22,7 +22,7 @@ export default function MyLanding() {
     }
 
     const sendLocationToDB = (lat, long) => {
-        fetch('https://my-website-lancedavenport-lancedavenports-projects.vercel.app/api/location', {
+        fetch('https://my-website-9npssjve7-lancedavenports-projects.vercel.app/api/location', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,10 @@ export default function MyLanding() {
             }
             return response.json(); 
         }).then(data => {
-            setReloadTrigger(prev => prev + 1)
+            const interval = setInterval(() => {
+                setReloadTrigger(prev => !prev);
+            }, 300000);
+            return () => clearInterval(interval);
         })
         .catch(error => {
             console.error('Error:', error);

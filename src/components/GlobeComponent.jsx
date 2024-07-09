@@ -1,11 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Globe from 'react-globe.gl';
 import * as d3 from 'd3';
-import forwardGeocode from './ForwardGeocode';
-
 
 const getLocationData = async () => {   
-    return await fetch('https://my-website-lancedavenport-lancedavenports-projects.vercel.app/api/location', {
+    return await fetch('https://my-website-9npssjve7-lancedavenports-projects.vercel.app/api/location', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -25,7 +23,26 @@ const getLocationData = async () => {
     });
 }
 
-const GlobeComponent = (reloadTrigger) => {
+const getLongLat = async (location) => {
+        return await fetch('https://my-website-9npssjve7-lancedavenports-projects.vercel.app/api/location/forward', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({city: location.city, state: location.state, country: location.count}),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); 
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+const GlobeComponent = ({reloadTrigger}) => {
     const globeEl = useRef();
     const [data, setData] = useState([]);
 
@@ -33,17 +50,13 @@ const GlobeComponent = (reloadTrigger) => {
         const fetchAndGeocodeData = async () => {
             const locations = await getLocationData();
             const geocodedLocations = await Promise.all(locations.map(async (location) => {
-                const geocodedLocation = await forwardGeocode({
-                    city: location.city,
-                    state: location.state,
-                    country: location.count
-                });
+                const fetchedLocation = await getLongLat(location);
                 return {
                     city: location.city,
                     state: location.state,
                     country: location.country,
-                    lat: geocodedLocation.latitude,
-                    lng: geocodedLocation.longitude,
+                    lat: fetchedLocation.location.latitude,
+                    lng: fetchedLocation.location.longitude,
                     count: location['COUNT(*)']
                 };
             }));
@@ -52,26 +65,44 @@ const GlobeComponent = (reloadTrigger) => {
 
         fetchAndGeocodeData();
     }, [reloadTrigger]);
+
+    useEffect(() => {
+        if (globeEl.current) {
+            globeEl.current.controls().autoRotate = true;
+            globeEl.current.controls().autoRotateSpeed = -0.1; 
+            globeEl.current.pointOfView({lat: 34.0549076, lng: -118.242643, altitude: 2});
+        }
+    }, []);
+
     const scale = d3.scaleSqrt()
-        .domain([0, d3.max(data, d => d.count)])
-        .range([0.5, 2]);
+    .domain([0, d3.max(data, d => d.count)])
+    .range([0.5, 2]);
+
 
     return (  
-
         <Globe
         ref={globeEl}
-        pointsData={data}
-        initialCoordinates={[34.0549076, -118.242643]}
-        pointAltitude={0}
-        height= {500}
+        labelsData={data}
+        labelLabel={({ city, state, count }) => `${city}, ${state}: ${count}`}
+        labelLat={d => d.lat}
+        labelLng={d => d.lng}
+        labelText={({ city }) => city}
+        labelColor={() => 'orange'}
+        labelAltitude={0.01}
+        labelSize={d => scale(d.count)}
+        labelRotation={1}
+        labelResolution={3}
+        labelIncludeDot={true}
+        labelDotRadius={d => scale(d.count)}
+        labelDotOrientation={() => 'bottom'}
+        labelsTransitionDuration={1000}
+        animateIn={true}
+        height={500}
         width={500}
-        pointRadius={d => scale(d.count)}
         cameraRotateSpeed={1}
-        pointColor={() => 'orange'}
-        pointLabel={({ city, state, count }) => `${city}, ${state}: ${count}`}
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
         backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
-    />
+        />
     );
 };
 

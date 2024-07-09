@@ -2,7 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: '10px'
+    margin-top: '10px';
+    max-width: 1280px;
   }
 
   #root {
@@ -11,3 +12,13 @@
     padding: 2rem;
     text-align: center;
   }
+
+  @media (max-width: 768px) {
+    .globe-container {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+    #root {
+        padding: 1rem; 
+    }
+}
