@@ -2,10 +2,10 @@
    Style 2
 */
 button {
-      background-color: rgba(51, 51, 51, 0.05);
+      background-color: rgb(254, 254, 254);
       border-radius: 8px;
       border-width: 0;
-      color: #333333;
+      color: #000000;
       cursor: pointer;
       display: inline-block;
       font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -23,20 +23,29 @@ button {
       -webkit-user-select: none;
       touch-action: manipulation;
 }
-
+.nav-icon {
+    align-items: left;
+}
 .nav-link {
     text-Decoration: none;
     padding-right: 10px;
+    align-items: left;
     color: black;
-    font-size: 20px;
+    font-size: 2.5vh;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif"
 }
-
+text{
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif"
+}
 .nav-link:hover {
     color: #475768;
 }
+.logo-left {
+    margin-right: auto; /* Pushes everything else to the right */
+}
+
 
 .me-auto {
-    text-align: left;
+    text-align: right;
     padding: 10px 0;
-    border-bottom: 2px solid #ccc;
 }

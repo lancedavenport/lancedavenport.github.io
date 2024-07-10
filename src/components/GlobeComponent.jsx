@@ -45,6 +45,21 @@ const getLongLat = async (location) => {
 const GlobeComponent = ({reloadTrigger}) => {
     const globeEl = useRef();
     const [data, setData] = useState([]);
+    const [width, setWidth] = useState(window.innerWidth > 768 ? 700 : window.innerWidth - 32); 
+    const [height, setHeight] = useState(window.innerWidth > 768 ? 500 : window.innerWidth - 32); 
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWidth(window.innerWidth > 768 ? 700 : window.innerWidth - 32); 
+            setHeight(window.innerWidth > 768 ? 500 : window.innerWidth - 32); 
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     useEffect(() => {
         const fetchAndGeocodeData = async () => {
@@ -86,7 +101,7 @@ const GlobeComponent = ({reloadTrigger}) => {
         labelLabel={({ city, state, count }) => `${city}, ${state}: ${count}`}
         labelLat={d => d.lat}
         labelLng={d => d.lng}
-        labelText={({ city }) => city}
+        labelText={({ city, count }) => `${city}: ${count}`}
         labelColor={() => 'orange'}
         labelAltitude={0.01}
         labelSize={d => scale(d.count)}
@@ -97,8 +112,8 @@ const GlobeComponent = ({reloadTrigger}) => {
         labelDotOrientation={() => 'bottom'}
         labelsTransitionDuration={1000}
         animateIn={true}
-        height={500}
-        width={500}
+        height={height}
+        width={width}
         cameraRotateSpeed={1}
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
         backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"

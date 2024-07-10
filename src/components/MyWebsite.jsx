@@ -1,4 +1,3 @@
-import { Col, Container, Row } from "react-bootstrap";
 import WebsiteNavbar from "./navigation/WebsiteNavbar";
 import { Outlet } from "react-router-dom";
 

@@ -56,7 +56,7 @@ export default function MyLanding() {
                         <p>With your permission, I have built a tool where I (and you) can see the locations of the page viewers.</p>
                         <Button onClick={getLocationAndSend}>Allow location tracking</Button>
                     </Col>
-                    <Col xs={12} lg={6}>
+                    <Col xs={12} lg={6} className="globe-col">
                         <div className="globe-container">
                             <GlobeComponent reloadTrigger={reloadTrigger} />
                         </div>
