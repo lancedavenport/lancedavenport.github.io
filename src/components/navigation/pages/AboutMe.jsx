@@ -4,7 +4,7 @@ export default function AboutMe() {
   return (
     <div>
       <Container className="mt-5">
-        <Row className="justify-content-center">
+        <Row className="justify-content-center global-text">
           <Col md={8}>
             <div className="text-center mb-4">
               <h1 className="mt-3">About Me</h1>
