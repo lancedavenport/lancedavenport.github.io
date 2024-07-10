@@ -22,7 +22,7 @@ export default function MyLanding() {
     }
 
     const sendLocationToDB = (lat, long) => {
-        fetch('https://my-website-9npssjve7-lancedavenports-projects.vercel.app/api/location', {
+        fetch('https://my-website-7sqofafty-lancedavenports-projects.vercel.app/api/location', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export default function MyLanding() {
     return (
         <div>
             <Container fluid>
-                <Row className="justify-content-center align-items-center text-center">
+                <Row className="justify-content-center align-items-center text-center global-text">
                     <Col xs={12} lg={6}>
                         <h1>Welcome to My Personal Website!</h1>
                         <p>Here you can find more information about me, some of my projects, and an easy way to contact me.</p>

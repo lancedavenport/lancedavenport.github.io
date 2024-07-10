@@ -3,7 +3,7 @@ import Globe from 'react-globe.gl';
 import * as d3 from 'd3';
 
 const getLocationData = async () => {   
-    return await fetch('https://my-website-9npssjve7-lancedavenports-projects.vercel.app/api/location', {
+    return await fetch('https://my-website-7sqofafty-lancedavenports-projects.vercel.app/api/location', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ const getLocationData = async () => {
 }
 
 const getLongLat = async (location) => {
-        return await fetch('https://my-website-9npssjve7-lancedavenports-projects.vercel.app/api/location/forward', {
+        return await fetch('https://my-website-7sqofafty-lancedavenports-projects.vercel.app/api/location/forward', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
