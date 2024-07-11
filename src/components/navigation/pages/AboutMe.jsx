@@ -1,28 +1,45 @@
 import { Col, Container, Row } from "react-bootstrap";
+import "../../../styles/AboutMe.css";
+import myPhoto from "../../../assets/me.jpg";
 
 export default function AboutMe() {
   return (
     <div>
-      <Container className="mt-5">
-        <Row className="justify-content-center global-text">
-          <Col md={8}>
-            <div className="text-center mb-4">
-              <h1 className="mt-3">About Me</h1>
-            </div>
-            <div className="text-center">
+      <Container className="mt-5 about-me-container">
+        <Row className="global-text align-items-center">
+          <Col md={4} className="text-right">
+      
+              <div className="my-photo">
+                <img
+                  src={myPhoto}
+                  alt="Lance Davenport"
+                />
+              </div>
+            </Col>
+            <Col md={8}>
+
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit
-                amet quam vehicula elementum sed sit amet dui.
+                I am a full stack developer who is passionate about creating
+                user-friendly applications. I have experience with React, Node,
+                Express, and SQL. I am always looking for new projects to work
+                on and new technologies to learn.
               </p>
+              <h2>Skills</h2>
+              <ul>
+                <li>JavaScript (React, Node.js)</li>
+                <li>HTML & CSS</li>
+                <li>Python</li>
+                <li>SQL & NoSQL Databases</li>
+              </ul>
+              <h2>Hobbies & Interests</h2>
               <p>
-                Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                Vivamus suscipit tortor eget felis porttitor volutpat.
+                In my free time, I enjoy hiking, photography, and exploring new
+                technologies. I'm always eager to learn and take on new
+                challenges.
               </p>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
   );
 }

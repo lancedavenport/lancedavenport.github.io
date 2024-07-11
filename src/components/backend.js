@@ -25,12 +25,12 @@ const createTcpPool = async (config) => {
     });
 };
 const corsOptions = {
-    origin: '*', // Replace with your frontend origin
+    origin: '*',
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type'],
     preflightContinue: false,
     credentials: true,
-    optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
+    optionsSuccessStatus: 204 
   };
   
 app.use(cors(corsOptions));
@@ -86,7 +86,7 @@ const getLocations = async () => {
         console.error('Error executing query:', error);
         throw error;
     } finally {
-        pool.end(); // Release the connection back to the pool
+        pool.end(); 
     }
 };
 const addLocation = async (city, state, country) => {
@@ -99,7 +99,7 @@ const addLocation = async (city, state, country) => {
         console.error('Error executing query:', error);
         throw error;
     } finally {
-        pool.end(); // Release the connection back to the pool
+        pool.end();
     }
 };
 

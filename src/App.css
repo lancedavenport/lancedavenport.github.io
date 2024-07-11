@@ -16,12 +16,9 @@
   font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 90%;
   color: rgb(255, 255, 255);
-  text-align: center;
-
 }
 #root {
   margin: 0 auto;
-  text-align: center;
   background-image: linear-gradient(rgb(0, 0, 0), rgb(32, 38, 40));
   height: 100%;
   min-height: 100vh;

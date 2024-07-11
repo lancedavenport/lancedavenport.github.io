@@ -1,10 +1,19 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import GlobeComponent from "../../GlobeComponent";
+import "../../../styles/MyLanding.css";
 
 export default function MyLanding() {
     const [reloadTrigger, setReloadTrigger] = useState(false);
+    const [allowed, setAllowed] = useState(false);
     // This function will get the location of the user and be used in the SQL db
+
+    useEffect(() => {
+        const trackingAllowed = localStorage.getItem('trackingAllowed');
+        if (trackingAllowed === 'true') {
+            setAllowed(true);
+        }
+    }, []);
 
     const getLocationAndSend = () => {
         if (navigator.geolocation) {
@@ -19,6 +28,8 @@ export default function MyLanding() {
         const longitude = position.coords.longitude;
 
         sendLocationToDB(latitude, longitude);
+        setAllowed(true);
+        localStorage.setItem('trackingAllowed', 'true');
     }
 
     const sendLocationToDB = (lat, long) => {
@@ -48,13 +59,13 @@ export default function MyLanding() {
 
     return (
         <div>
-            <Container fluid>
+            <Container fluid className="landing-center">
                 <Row className="justify-content-center align-items-center text-center global-text">
                     <Col xs={12} lg={6}>
                         <h1>Welcome to My Personal Website!</h1>
-                        <p>Here you can find more information about me, some of my projects, and an easy way to contact me.</p>
-                        <p>With your permission, I have built a tool where I (and you) can see the locations of the page viewers.</p>
-                        <Button onClick={getLocationAndSend}>Allow location tracking</Button>
+                        <p>Discover more about me, explore my projects, and get in touch easily.</p>
+                        <p>With your consent, I have developed a tool to track the locations of page visitors.</p>
+                        {!allowed && <Button onClick={getLocationAndSend}>Enable Location Tracking</Button>}
                     </Col>
                     <Col xs={12} lg={6} className="globe-col">
                         <div className="globe-container">

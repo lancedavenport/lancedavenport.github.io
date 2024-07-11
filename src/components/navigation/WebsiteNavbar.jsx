@@ -1,29 +1,29 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logo from "../../assets/my_logo.png";
+import "../../styles/Navbar.css"; 
 
 export default function WebsiteNavbar() {
   return (
-    <Navbar bg="dark" variant="dark" sticky="top" expand="sm" collapseOnSelect>
-      <Container>
-        <Navbar.Collapse id="responsive-navbar-nav">
-        <Navbar.Brand as={Link} to="/" className="nav-icon logo-left">
+    <nav className="navbar navbar-dark bg-dark sticky-top navbar-expand-sm">
+      <div className="container">
+        <Link to="/" className="navbar-brand nav-icon logo-left">
           <img
             alt=""
             src={logo}
-            width="17"
-            height="17"
+            width="30"
+            height="30"
             className="d-inline-block align-top"
-          ></img>
-        </Navbar.Brand>
-          <Nav className="justify-end align-center gap-8 hidden lg:flex">
-            <Nav.Link as={Link} to="/" className="nav-link">HOME</Nav.Link>
-            <Nav.Link as={Link} to="/about" className="nav-link">ABOUT ME</Nav.Link>
-            <Nav.Link as={Link} to="/projects" className="nav-link">PROJECTS</Nav.Link>
-            <Nav.Link as={Link} to="/contact" className="nav-link">CONTACT</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          />
+        </Link>
+        <div className="navbar-collapse" id="responsive-navbar-nav">
+          <div className="nav ml-auto justify-end align-right gap-8">
+            <Link to="/" className="nav-link">HOME</Link>
+            <Link to="/about" className="nav-link">ABOUT ME</Link>
+            <Link to="/projects" className="nav-link">PROJECTS</Link>
+            <a href="mailto:lance.davenport@icloud.com" className="nav-link">CONTACT</a>
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 }

@@ -23,29 +23,7 @@ button {
       -webkit-user-select: none;
       touch-action: manipulation;
 }
-.nav-icon {
-    align-items: left;
-}
-.nav-link {
-    text-Decoration: none;
-    padding-right: 10px;
-    align-items: left;
-    color: rgb(255, 255, 255);
-    font-size: 100%;
-    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+
 text{
     font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.nav-link:hover {
-    color: #475768;
-}
-.logo-left {
-    margin-right: auto; /* Pushes everything else to the right */
-}
-
-
-.me-auto {
-    text-align: right;
-    padding: 10px 0;
 }
