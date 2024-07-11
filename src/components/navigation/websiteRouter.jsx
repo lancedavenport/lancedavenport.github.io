@@ -4,7 +4,6 @@ import MyWebsite from "../MyWebsite";
 import MyLanding from "./pages/MyLanding";
 import AboutMe from "./pages/AboutMe";
 import Projects from "./pages/Projects";
-import Contact from "./pages/Contact";
 
 export default function WebsiteRouter() {
     return  <BrowserRouter>
