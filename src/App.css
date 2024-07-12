@@ -39,5 +39,7 @@ body {
     flex-direction: column;
     margin-top: 20px;
   }
-
+  .global-text {
+    font-size: 70%;
+  }
 }

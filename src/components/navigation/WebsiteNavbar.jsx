@@ -18,7 +18,7 @@ export default function WebsiteNavbar() {
         <div className="navbar-collapse" id="responsive-navbar-nav">
           <div className="nav ml-auto justify-end align-right gap-8">
             <Link to="/" className="nav-link">HOME</Link>
-            <Link to="/about" className="nav-link">ABOUT ME</Link>
+            <Link to="/about" className="nav-link">ABOUT</Link>
             <Link to="/projects" className="nav-link">PROJECTS</Link>
             <a href="mailto:lance.davenport@icloud.com" className="nav-link">CONTACT</a>
           </div>

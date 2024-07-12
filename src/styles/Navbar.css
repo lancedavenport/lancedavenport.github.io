@@ -21,6 +21,7 @@
     color: #fff;
     margin-left: 1rem;
     text-decoration: none;
+    overflow: hidden;
   }
   
   .nav-link:hover {
@@ -29,7 +30,7 @@
   
   .nav {
     display: flex;
-    align-items: center;
+    align-items: right;
   }
   
   .container {
@@ -53,5 +54,12 @@
   
   .ml-auto {
     margin-left: auto;
+  }
+
+  @media (max-width: 768px){
+    .nav {
+      font-size: 70%;
+    }
+    
   }
   
