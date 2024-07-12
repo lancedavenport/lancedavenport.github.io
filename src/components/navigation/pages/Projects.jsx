@@ -7,7 +7,7 @@ export default function Projects() {
           <Row className="justify-content-center global-text">
             <Col md={8}>
               <div className="text-center mb-4">
-                <h1 className="mt-3">About Me</h1>
+                <h1 className="mt-3">Projects</h1>
               </div>
               <div className="text-center">
                 <p>

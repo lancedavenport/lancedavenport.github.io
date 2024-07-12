@@ -60,6 +60,49 @@
     .nav {
       font-size: 70%;
     }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+    }
     
+    
+    .navbar-collapse {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+    
+    .nav-link {
+      color: #fff;
+      margin-left: 0rem;
+      text-decoration: none;
+      overflow: hidden;
+    }
+    
+    .nav-link:hover {
+      color: #ddd;
+    }
+    
+    .nav {
+      display: flex;
+      align-items: right;
+    }
+    
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+
+    .gap-8 {
+      gap: 2rem;
+    }
+    
+    .ml-auto {
+      margin-left: auto;
+    }
   }
   
