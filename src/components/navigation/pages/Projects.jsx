@@ -1,28 +1,32 @@
-import { Col, Container, Row } from "react-bootstrap";
+import "../../../styles/Projects.css";
 
 export default function Projects() {
-    return (
-        <div>
-        <Container className="mt-5">
-          <Row className="justify-content-center global-text">
-            <Col md={8}>
-              <div className="text-center mb-4">
-                <h1 className="mt-3">Projects</h1>
-              </div>
-              <div className="text-center">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit
-                  amet quam vehicula elementum sed sit amet dui.
-                </p>
-                <p>
-                  Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                  Vivamus suscipit tortor eget felis porttitor volutpat.
-                </p>
-              </div>
-            </Col>
-          </Row>
-        </Container>
+  return (
+    <div className="project-wrapper">
+      <div className="project-container">
+        /*
+        <h1 style={{ textAlign: "center", marginTop: "10px", color: "white" }}>
+          Projects
+        </h1>
+        <div className="project-content">
+          <div className="project-text-left">
+            <div className="project-text">
+              <h2>Senior Capstone Project (Orange Button)</h2>
+            </div>
+          </div>
+          <div className="project-text-left">
+            <div className="project-text">
+              <h2>This website</h2>
+            </div>
+          </div>
+          <div className="project-text-left">
+            <div className="project-text">
+              <h2>Fix: A Solution to the Artificial Nature of Online Dating</h2>
+            </div>
+          </div>
+        </div>
+        */
       </div>
-    );
+    </div>
+  );
 }

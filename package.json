@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://lancedavenport.github.io/react-gh-pages",
+  "homepage": "www.ldavenport.dev",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
