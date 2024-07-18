@@ -13,7 +13,7 @@ export default function AboutMe() {
               <div className="about-me-text">
                 <p>
                   I am a recent graduate from the University of
-                  Wisconsin-Madison, where I studied Computer Science.
+                  Wisconsin-Madison with a BS, where I studied Computer Science.
                 </p>
                 <h2>Languages</h2>
                 <ul>
@@ -34,6 +34,8 @@ export default function AboutMe() {
                   <li>Docker</li>
                   <li>Generative AI</li>
                 </ul>
+
+                <a href={"/resume.pdf"}  target="_blank" rel="noopener noreferrer"><b>Click here to view my resume</b></a>
               </div>
             </div>
           </div>

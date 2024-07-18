@@ -13,7 +13,7 @@ export default function WebsiteRouter() {
         <Route path="/" element={<MyWebsite />}>
           <Route index element={<MyLanding />} />
           <Route path="/about" element={<AboutMe />} />
-          <Route path="/projects" element={<InProgress />} />
+          <Route path="/projects" element={<Projects />} />
         </Route>
       </Routes>
     </BrowserRouter>

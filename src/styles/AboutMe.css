@@ -64,6 +64,11 @@
   margin-bottom: 10px;
 }
 
+.about-me-text a {
+  color: white;
+  text-decoration: none;
+}
+
 @media (max-width: 600px) {
   .my-photo img {
     width: 150px;

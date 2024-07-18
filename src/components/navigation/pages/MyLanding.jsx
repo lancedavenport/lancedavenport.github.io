@@ -1,4 +1,3 @@
-import { Button, Col, Container, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import GlobeComponent from "../../GlobeComponent";
 import "../../../styles/MyLanding.css";
@@ -61,9 +60,9 @@ export default function MyLanding() {
 
   return (
     <div>
-      <Container fluid className="landing-center">
-        <Row className="justify-content-center align-items-center text-center global-text">
-          <Col xs={12} lg={6}>
+      <div className="landing-center">
+        <div className="landing-format global-text text-center">
+          <div className="landing-text">
             <h1>Welcome to My Personal Website!</h1>
             <p>
               Discover more about me, explore my projects, and get in touch
@@ -74,18 +73,18 @@ export default function MyLanding() {
               of page visitors.
             </p>
             {!allowed && (
-              <Button onClick={getLocationAndSend}>
+              <button onClick={getLocationAndSend}>
                 Enable Location Tracking
-              </Button>
+              </button>
             )}
-          </Col>
-          <Col xs={12} lg={6} className="globe-col">
+          </div>
+          <div className="landing-globe">
             <div className="globe-container">
               <GlobeComponent reloadTrigger={reloadTrigger} />
             </div>
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
