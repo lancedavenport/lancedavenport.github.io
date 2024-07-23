@@ -7,7 +7,7 @@ export default function Projects() {
   return (
     <div className="project-wrapper">
       <div className="project-container">
-        <h1 style={{ textAlign: "center", marginTop: "10px", color: "white" }}>
+        <h1 style={{ textAlign: "center", marginTop: "5px", color: "white" }}>
           Projects
         </h1>
         <div className="project-content">
@@ -29,7 +29,7 @@ export default function Projects() {
                 Button's taxonomy.
               </p>
               <p className="project-discription">
-                Developed in a team of 4, we designed and impliment a custom
+                Developed in a team of 4, we designed and implimented a custom
                 user interface using React, Javascript, and CSS. I was
                 responsible for creating an API with Flask and Python,
                 leveraging Google Cloud Platform, Vertex AI, and LangChain to
@@ -55,8 +55,9 @@ export default function Projects() {
               </p>
               <p className="project-discription">
                 Developed a portfolio website featuring diverse projects,
-                including a backend API, built with Node.JS and Express and
-                hosted on Vercel, that connects to SQL databases to dynamically
+                including a backend API. The front end was built using React while the backend API 
+                was built with Node.JS and Express and
+                hosted on Vercel. The API connects to a MySQL database to dynamically
                 populate a globe with website visitors' locations, utilizing
                 modern web technologies for a clean and organized presentation.
               </p>
@@ -73,7 +74,7 @@ export default function Projects() {
                 <img src={Fix} alt="Logo created for Fix app"></img>
               </a>
               <p className="project-blurb">
-                A Solution to the Artificial Nature of Online Dating
+                A Solution to the Artificial Nature of Online Dating 
               </p>
               <p className="project-discription">
                 A unique blind dating app built with Swift and Firebase that

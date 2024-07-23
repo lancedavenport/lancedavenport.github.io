@@ -13,7 +13,9 @@ export default function AboutMe() {
               <div className="about-me-text">
                 <p>
                   I am a recent graduate from the University of
-                  Wisconsin-Madison with a BS, where I studied Computer Science.
+                  Wisconsin-Madison with a B.S. in Computer Science.
+                  In my free time, I enjoy skiing, surfing, and golfing. 
+                  I am particularly interested in Full-Stack Development, Machine Learning, and AI.
                 </p>
                 <h2>Languages</h2>
                 <ul>
