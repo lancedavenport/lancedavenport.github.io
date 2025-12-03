@@ -12,17 +12,22 @@ const app = express();
 const port = 5174;
 const api_key = process.env.API_KEY;
 
+let pool;
 const createTcpPool = async (config) => {
-    return createPool({
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
-        host: process.env.DB_HOST,
-        port: process.env.DB_PORT,
-        connectTimeout: 31536000,
-        acquireTimeout: 31536000,
-        ...config,
-    });
+    if (!pool) {
+        pool = await createPool({
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_NAME,
+            host: process.env.DB_HOST,
+            port: process.env.DB_PORT,
+            connectTimeout: 31536000,
+            acquireTimeout: 31536000,
+            ...config,
+        });
+    }
+
+    return pool;
 };
 const corsOptions = {
     origin: '*',
@@ -80,13 +85,11 @@ const getLocations = async () => {
     const pool = await createTcpPool();
     try {
         const connection = await pool.getConnection();
-        const result = await connection.query("SELECT COUNT(*), city, state, country as count FROM `user_cities` GROUP BY city, state, country");
+        const result = await connection.query("SELECT COUNT(*) AS count, city, state, country FROM `user_cities` GROUP BY city, state, country");
         return result;
     } catch (error) {
         console.error('Error executing query:', error);
         throw error;
-    } finally {
-        pool.end(); 
     }
 };
 const addLocation = async (city, state, country) => {
@@ -98,8 +101,6 @@ const addLocation = async (city, state, country) => {
     } catch (error) {
         console.error('Error executing query:', error);
         throw error;
-    } finally {
-        pool.end();
     }
 };
 

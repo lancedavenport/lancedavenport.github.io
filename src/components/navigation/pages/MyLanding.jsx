@@ -13,6 +13,16 @@ export default function MyLanding() {
     }
   }, []);
 
+  useEffect(() => {
+    if (!allowed) return;
+
+    const interval = setInterval(() => {
+      setReloadTrigger((prev) => !prev);
+    }, 300000);
+
+    return () => clearInterval(interval);
+  }, [allowed]);
+
   const getLocationAndSend = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success);
@@ -21,17 +31,21 @@ export default function MyLanding() {
     }
   };
 
-  function success(position) {
+  async function success(position) {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
 
-    sendLocationToDB(latitude, longitude);
+    const submitted = await sendLocationToDB(latitude, longitude);
+    if (submitted) {
+      setReloadTrigger((prev) => !prev);
+    }
     setAllowed(true);
     localStorage.setItem("trackingAllowed", "true");
   }
 
-  const sendLocationToDB = (lat, long) => {
-    fetch(
+  const sendLocationToDB = async (lat, long) => {
+    try {
+      const response = await fetch(
       "https://my-website-7sqofafty-lancedavenports-projects.vercel.app/api/location",
       {
         method: "POST",
@@ -40,22 +54,18 @@ export default function MyLanding() {
         },
         body: JSON.stringify({ latitude: lat, longitude: long }),
       }
-    )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const interval = setInterval(() => {
-          setReloadTrigger((prev) => !prev);
-        }, 300000);
-        return () => clearInterval(interval);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      await response.json();
+      return true;
+    } catch (error) {
+      console.error("Error:", error);
+      return false;
+    }
   };
 
   return (

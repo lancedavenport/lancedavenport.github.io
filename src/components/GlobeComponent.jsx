@@ -29,13 +29,13 @@ const getLongLat = async (location) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({city: location.city, state: location.state, country: location.count}),
+            body: JSON.stringify({city: location.city, state: location.state, country: location.country}),
         })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.json(); 
+            return response.json();
         })
         .catch(error => {
             console.error('Error:', error);
@@ -45,8 +45,9 @@ const getLongLat = async (location) => {
 const GlobeComponent = ({reloadTrigger}) => {
     const globeEl = useRef();
     const [data, setData] = useState([]);
-    const [width, setWidth] = useState(window.innerWidth > 768 ? 700 : window.innerWidth - 32); 
-    const [height, setHeight] = useState(window.innerWidth > 768 ? 500 : window.innerWidth - 32); 
+    const [width, setWidth] = useState(window.innerWidth > 768 ? 700 : window.innerWidth - 32);
+    const [height, setHeight] = useState(window.innerWidth > 768 ? 500 : window.innerWidth - 32);
+    const geocodeCacheRef = useRef({});
 
     useEffect(() => {
         const handleResize = () => {
@@ -62,20 +63,59 @@ const GlobeComponent = ({reloadTrigger}) => {
     }, []);
 
     useEffect(() => {
+        const storedCache = localStorage.getItem('geocodeCache');
+
+        if (storedCache) {
+            try {
+                geocodeCacheRef.current = JSON.parse(storedCache);
+            } catch (error) {
+                console.error('Failed to parse cached geocode data:', error);
+                geocodeCacheRef.current = {};
+            }
+        }
+    }, []);
+
+    useEffect(() => {
         const fetchAndGeocodeData = async () => {
             const locations = await getLocationData();
+
+            if (!Array.isArray(locations)) {
+                setData([]);
+                return;
+            }
+
             const geocodedLocations = await Promise.all(locations.map(async (location) => {
-                const fetchedLocation = await getLongLat(location);
+                const cacheKey = `${location.city}|${location.state}|${location.country}`;
+                let cachedLocation = geocodeCacheRef.current[cacheKey];
+
+                if (!cachedLocation) {
+                    const fetchedLocation = await getLongLat(location);
+                    if (!fetchedLocation?.location) {
+                        return null;
+                    }
+
+                    cachedLocation = {
+                        lat: fetchedLocation.location.latitude,
+                        lng: fetchedLocation.location.longitude,
+                    };
+                    geocodeCacheRef.current[cacheKey] = cachedLocation;
+                }
+
+                const count = Number(location.count ?? location['COUNT(*)']) || 0;
+
                 return {
                     city: location.city,
                     state: location.state,
                     country: location.country,
-                    lat: fetchedLocation.location.latitude,
-                    lng: fetchedLocation.location.longitude,
-                    count: location['COUNT(*)']
+                    lat: cachedLocation.lat,
+                    lng: cachedLocation.lng,
+                    count,
                 };
             }));
-            setData(geocodedLocations);
+
+            const filteredLocations = geocodedLocations.filter(Boolean);
+            setData(filteredLocations);
+            localStorage.setItem('geocodeCache', JSON.stringify(geocodeCacheRef.current));
         };
 
         fetchAndGeocodeData();
@@ -89,8 +129,9 @@ const GlobeComponent = ({reloadTrigger}) => {
         }
     }, []);
 
+    const maxCount = data.length ? d3.max(data, d => d.count) : 0;
     const scale = d3.scaleSqrt()
-    .domain([0, d3.max(data, d => d.count)])
+    .domain([0, Math.max(1, maxCount || 0)])
     .range([0.5, 2]);
 
 
