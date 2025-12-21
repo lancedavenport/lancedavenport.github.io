@@ -32,7 +32,7 @@ export default function MyLanding() {
 
   const sendLocationToDB = (lat, long) => {
     fetch(
-      "https://my-website-7sqofafty-lancedavenports-projects.vercel.app/api/location",
+      "https://my-website-4b8mty35i-lancedavenports-projects.vercel.app/api/location",
       {
         method: "POST",
         headers: {
