@@ -28,8 +28,8 @@ export default function Projects() {
                 A web-tool to easily convert a solar module PDF to Orange
                 Button's taxonomy.
               </p>
-              <p className="project-discription">
-                Developed in a team of 4, we designed and implimented a custom
+              <p className="project-description">
+                Developed in a team of 4, we designed and implemented a custom
                 user interface using React, Javascript, and CSS. I was
                 responsible for creating an API with Flask and Python,
                 leveraging Google Cloud Platform, Vertex AI, and LangChain to
@@ -53,7 +53,7 @@ export default function Projects() {
               <p className="project-blurb">
                 My portfolio website built using React, Node.JS, and Vercel.
               </p>
-              <p className="project-discription">
+              <p className="project-description">
                 Developed a portfolio website featuring diverse projects,
                 including a backend API. The front end was built using React while the backend API 
                 was built with Node.JS and Express and
@@ -76,10 +76,10 @@ export default function Projects() {
               <p className="project-blurb">
                 A Solution to the Artificial Nature of Online Dating 
               </p>
-              <p className="project-discription">
+              <p className="project-description">
                 A unique blind dating app built with Swift and Firebase that
                 allows users to be set up on blind dates by friends. I
-                implimented the feed and matching functionality as well as
+                implemented the feed and matching functionality as well as
                 designed and developed the user creation screens, settings,
                 profile editing functions, handling both front-end interfaces
                 and back-end integration.
