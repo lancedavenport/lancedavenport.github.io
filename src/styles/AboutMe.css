@@ -21,7 +21,7 @@
 
 .my-photo img {
   width: 200px;
-  height: 250px;
+  height: 200px;
   margin-bottom: 10px;
   margin-top: 5px;
   border-radius: 50%;
@@ -34,7 +34,7 @@
 
 .text-left {
   background-color: rgba(92, 88, 88, 0.332);
-  border-radius: 100px;
+  border-radius: 16px;
   margin-left: 20px;
   margin-right: 20px;
   padding-top: 5px;

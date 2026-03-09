@@ -46,7 +46,8 @@
 
 .project-text img {
     width: 55%;
-    height: auto;
+    height: 180px;
+    object-fit: cover;
     border-radius: 10px;
     margin: 10px;
 

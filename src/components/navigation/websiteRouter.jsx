@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 
 import MyWebsite from "../MyWebsite";
 import MyLanding from "./pages/MyLanding";
@@ -8,7 +8,7 @@ import InProgress from "./pages/InProgress";
 
 export default function WebsiteRouter() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<MyWebsite />}>
           <Route index element={<MyLanding />} />
@@ -16,6 +16,6 @@ export default function WebsiteRouter() {
           <Route path="/projects" element={<Projects />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
