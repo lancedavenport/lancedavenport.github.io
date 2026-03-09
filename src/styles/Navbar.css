@@ -25,7 +25,13 @@
   }
   
   .nav-link:hover {
-    color: #ddd;
+    color: orange;
+    text-decoration: underline;
+  }
+
+  .nav-link-active {
+    color: orange !important;
+    text-decoration: underline;
   }
   
   .nav {

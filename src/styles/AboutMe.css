@@ -57,11 +57,18 @@
 .about-me-text ul {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .about-me-text ul li {
-  padding-left: 25px;
-  margin-bottom: 10px;
+  background-color: rgba(255, 165, 0, 0.2);
+  border: 1px solid orange;
+  border-radius: 20px;
+  padding: 4px 14px;
+  margin-bottom: 0;
+  font-size: 90%;
 }
 
 .about-me-text a {

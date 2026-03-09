@@ -20,7 +20,7 @@ export default function Footer() {
                         className="social-icon"/>
                 </a>
             </div>
-            <p className='text-footer'>© 2024 Lance Davenport</p>
+            <p className='text-footer'>© {new Date().getFullYear()} Lance Davenport</p>
             </footer>
     )
 }

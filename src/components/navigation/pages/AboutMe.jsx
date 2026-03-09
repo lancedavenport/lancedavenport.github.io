@@ -3,7 +3,7 @@ import myPhoto from "../../../assets/me.jpg";
 
 export default function AboutMe() {
   return (
-    <div className="about-me-wrapper">
+    <div className="about-me-wrapper page-fade">
       <div className="about-me-container">
         <div className="about-me-content">
           <div className="text-left">

@@ -24,6 +24,12 @@ button {
       touch-action: manipulation;
 }
 
+button:hover {
+      background-color: orange;
+      color: #fff;
+      transform: scale(1.03);
+}
+
 text{
     font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

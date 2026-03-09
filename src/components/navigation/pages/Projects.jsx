@@ -5,7 +5,7 @@ import MySite from "../../../assets/my_site.png";
 
 export default function Projects() {
   return (
-    <div className="project-wrapper">
+    <div className="project-wrapper page-fade">
       <div className="project-container">
         <h1 style={{ textAlign: "center", marginTop: "5px", color: "white" }}>
           Projects

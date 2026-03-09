@@ -69,7 +69,7 @@ export default function MyLanding() {
     }
     };
   return (
-    <div>
+    <div className="page-fade">
       <div className="landing-center">
         <div className="landing-format global-text text-center">
           <div className="landing-text">
